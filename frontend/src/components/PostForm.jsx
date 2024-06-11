@@ -1,10 +1,11 @@
 import { Form, useActionData, redirect, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { getToken } from "../util/auth";
+ 
 const PostForm = ({ header, btnText, oldValue, method }) => {
   const data = useActionData();
   const navigation = useNavigate();
-  const isPosting = navigation.state === "submitting"
+  const isPosting = navigation.state === "submitting";
   return (
     <>
       <section className="form-section">
@@ -81,10 +82,10 @@ export const action = async ({ request, params }) => {
     description: data.get("description"),
   };
 
-  let url = "http://localhost:8080/posts";
+  let url = `${process.env.REACT_APP_DOMAIN}/posts`;
   if (method === "PATCH") {
     const id = params.id;
-    url = `http://localhost:8080/posts/${id}`;
+    url = `${process.env.REACT_APP_DOMAIN}/posts/${id}`;
   }
 
   const response = await fetch(url, {

@@ -26,7 +26,7 @@ export const action = async ({ request }) => {
     email: data.get("email"),
     password: data.get("password"),
   };
-  const response = await fetch(`http://localhost:8080/${mode}`, {
+  const response = await fetch(`${process.env.REACT_APP_DOMAIN}/${mode}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
